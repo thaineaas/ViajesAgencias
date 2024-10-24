@@ -18,6 +18,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<Viajes.Integration.CurrencyExchange.CurrencyExchangeIntegration>();
 builder.Services.AddScoped<Viajes.Service.ProductoService>();
+builder.Services.AddScoped<Viajes.Service.CategoriaService>();
 
 builder.Services.AddSession(options =>
 {
