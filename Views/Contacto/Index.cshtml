@@ -1,0 +1,58 @@
+@model Viajes.ViewModel.ContactoViewModel
+
+@{
+    ViewData["Title"] = "Contacto";
+}
+
+<div class="container">
+    <h1 class="text-center mb-4">Formulario de contacto</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form asp-controller="Contacto" asp-action="Enviar" method="post">
+                <div class="form-group">
+                    <label asp-for="FormContacto.Name" class="control-label"></label>
+                    <input asp-for="FormContacto.Name" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="FormContacto.Email" class="control-label"></label>
+                    <input asp-for="FormContacto.Email" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="FormContacto.Message" class="control-label"></label>
+                    <textarea asp-for="FormContacto.Message" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FormContacto.Contrasena" class="control-label"></label>
+                    <input asp-for="FormContacto.Contrasena" class="form-control" type="password" />
+                </div>                                  
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </div>
+            </form>
+            <h1>@ViewData["Message"]</h1>
+        </div>
+        <div class="col-md-6">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Email</th>
+                                <th>Mensaje</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if(Model.ListContacto!=null){
+                                @foreach(var item in Model.ListContacto)
+                                {
+                                    <tr>
+                                        <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Message)</td>
+                                    </tr>    
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+    </div>
+</div>
