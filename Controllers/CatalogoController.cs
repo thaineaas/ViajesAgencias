@@ -9,7 +9,7 @@ using Viajes.Data;
 using System.Dynamic;
 using Viajes.Service;
 
-namespace app2game.Controllers
+namespace Viajes.Controllers
 {
     public class CatalogoController : Controller
     {
@@ -25,15 +25,16 @@ namespace app2game.Controllers
              _productoService = productoService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var categorias = from o in _context.DataCategoria select o;
-            var catalogos = _productoService.GetAll();
+            var catalogos = await _productoService.GetAll();  // Usa await aquí
             dynamic model = new ExpandoObject();
             model.itemCategorias = categorias;
             model.itemCatalogos = catalogos;
             return View(model);
         }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
