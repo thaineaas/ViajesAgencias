@@ -1,0 +1,24 @@
+GET http://localhost:5136/api/producto/
+Accept: application/json
+
+
+GET http://localhost:5136/api/producto/1
+Accept: application/json
+
+POST http://localhost:5136/api/producto HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+
+{
+    "Nombre" = "Boleto",
+
+    "Descripcion" = "Viaje de ida y regreso, 1 semana en Cuzco",
+
+    "Precio" = "2000";
+
+    "Calificacion" = "4 estrellas";
+
+    "ImageURL" = "https://img.freepik.com/foto-gratis/hermosas-vistas-ciudadela-inca-machu-picchu_181624-16710.jpg";
+
+    "Categoria" = "Viaje Aereo";
+}
