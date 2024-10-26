@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Viajes.Data;
 using Microsoft.OpenApi.Models;
+using viajesagencias;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -65,6 +66,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseSession();
