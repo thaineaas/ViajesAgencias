@@ -1,8 +1,8 @@
 ﻿var backgrounds = [
-  "images/port1.png",
-  "images/port1.png",
-  "images/port1.png",
-  "images/port1.png",
+  "images/f1.png",
+  "images/f2.png",
+  "images/f3.png",
+  "images/f4.png",
 ]; // Asegúrate de proporcionar las rutas correctas de tus imágenes
 var loadedImages = [];
 var index = 0;
