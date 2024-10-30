@@ -37,6 +37,7 @@ namespace Viajes.Controllers
                 ViewData["Message"] = "Por favor debe loguearse antes de agregar un producto";
                 return RedirectToAction("Index","Catalogo");
             }
+            Console.WriteLine("Encontro usuario");
             var items = from o in _context.DataItemCarrito select o;
             items = items.Include(p => p.Producto).
                     Where(w => w.UserID.Equals(userIDSession) &&
@@ -53,10 +54,14 @@ namespace Viajes.Controllers
         public async Task<IActionResult> Add(long? id){
             var userName = _userManager.GetUserName(User);
             if(userName == null){
+                            Console.WriteLine("No usuario");
+
                _logger.LogInformation("No existe usuario");
                ViewData["Message"] = "Por favor debe loguearse antes de agregar un producto";
                return RedirectToAction("Index","Catalogo");
             }else{
+                Console.WriteLine("Encontro usuario");
+
                 //obtengo el carrito de memoria
                 List<ItemCarrito> carrito = Helper.SessionExtensions.Get<List<ItemCarrito>>(HttpContext.Session, "carritoSesion");
                 if(carrito == null){
@@ -69,6 +74,9 @@ namespace Viajes.Controllers
                 itemCarrito.UserID = userName;
                 itemCarrito.Cantidad = 1;
                 itemCarrito.Precio=producto.Precio*1;
+                _context.DataItemCarrito.Add(itemCarrito);
+                await _context.SaveChangesAsync();
+
                 carrito.Add(itemCarrito);
                 //seteo el carrito en memoria
                 Helper.SessionExtensions.Set<List<ItemCarrito>>(HttpContext.Session, "carritoSesion",carrito);
