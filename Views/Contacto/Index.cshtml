@@ -6,6 +6,12 @@
 
 <div class="container">
     <h1 class="text-center mb-4">Formulario de contacto</h1>
+     @if (TempData["Message"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["Message"]
+        </div>
+    }
     <div class="row justify-content-center">
         <div class="col-md-6">
             <form asp-controller="Contacto" asp-action="Enviar" method="post">

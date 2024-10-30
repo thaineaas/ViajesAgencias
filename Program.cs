@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Viajes.Data;
 using Microsoft.OpenApi.Models;
 using viajesagencias;
+using Microsoft.Extensions.ML;
+using MLModel1_ConsoleApp1;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +18,9 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddPredictionEnginePool<MLModel1.ModelInput, MLModel1.ModelOutput>()
+    .FromFile("MLModel1.mlnet");
 
 builder.Services.AddScoped<Viajes.Integration.CurrencyExchange.CurrencyExchangeIntegration>();
 builder.Services.AddScoped<Viajes.Service.ProductoService>();
