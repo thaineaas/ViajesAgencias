@@ -42,17 +42,12 @@ namespace Viajes.Controllers
         [HttpPost]
         public async Task<IActionResult> Enviar(ContactoViewModel viewModel)
         {
-            _logger.LogDebug("Ingreso a Enviar Mensaje");
             MLModel1.ModelInput sampleData = new MLModel1.ModelInput()
             {
                 Sentiment_Text = viewModel.FormContacto.Message,
             };
             MLModel1.ModelOutput prediction = _predictionEnginePool.Predict(sampleData);
-            var dato=prediction.PredictedLabel;
-            Console.WriteLine($"El sentimiento de modelo es: {dato}");
             
-
-
             if(prediction.PredictedLabel ==1){
                 viewModel.FormContacto.Sentimiento = "Positivo";
             }
@@ -71,10 +66,10 @@ namespace Viajes.Controllers
 
             //var emailService = new SendMail();
             //await emailService.EnviarCorreoAsync(contacto.Email, "Asunto del correo", contacto.Message,contacto.Contrasena);
-            var __apiKey = Environment.GetEnvironmentVariable("SENDGRID_API_KEY");
+            //var __apiKey = Environment.GetEnvironmentVariable("SENDGRID_API_KEY");
 
-            var emailService2 = new SendMailSendGrid();
-            await emailService2.EnviarCorreoAsync(contacto.Email, "Asunto del correo", contacto.Message,contacto.Contrasena);
+            //var emailService2 = new SendMailSendGrid();
+            //await emailService2.EnviarCorreoAsync(contacto.Email, "Asunto del correo", contacto.Message,contacto.Contrasena);
 
 
             _context.Add(contacto);
