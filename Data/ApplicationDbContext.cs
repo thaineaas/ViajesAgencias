@@ -13,6 +13,11 @@ public class ApplicationDbContext : IdentityDbContext
 
     public DbSet<Viajes.Models.Contacto> DataContacto {get; set; }
     public DbSet<Viajes.Models.Producto> DataProducto {get; set; }
+    public DbSet<Viajes.Models.ItemCarrito> DataItemCarrito {get; set; }
 
     public DbSet<Viajes.Models.Categoria> DataCategoria {get; set; }
+    public DbSet<Viajes.Models.Pago> DataPago {get; set; }
+    public DbSet<Viajes.Models.DetallePedido> DataDetallePedido {get; set; }
+
+
 }

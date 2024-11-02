@@ -5,8 +5,69 @@
     ViewBag.Title = "Tipo Cambio";
     var symbols = ViewData["symbols"] as Dictionary<string, string>;
 }
-
-<div class="container">
+<style>
+    body {
+        background-image: url('https://jmagazine.joins.com/_data/photo/2020/03/3698936108_izCZRDOT_1.jpg');
+        background-size: cover;
+        background-position: center;
+    }
+    .form-container {
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 60px; 
+        border-radius: 10px;
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+        max-width: 400px;
+        width: 100%;
+        position: relative; 
+    }
+    .form-container h3 {
+        font-size: 3rem; 
+        font-family: 'Courier New', Courier, monospace; 
+        font-weight: bold;
+        text-align: center; 
+    }
+    .form-container .form-control,
+    .form-container label,
+    .form-container button {
+        font-size: 1.4rem; 
+    }
+    .form-container input[type="checkbox"] {
+        transform: scale(1.2); 
+    }
+    .form-container .checkbox-label {
+        display: flex;
+        align-items: center;
+        margin-top: 5px; 
+    }
+    .form-container .checkbox-label input[type="checkbox"] {
+        margin-right: 5px; 
+    }
+    .title-box {
+        font-weight: bold;
+        padding: 10px;
+        text-align: center;
+    }
+    .forgot-password-container {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 1rem; 
+    }
+    .circular-image {
+        position: absolute;
+        top: -60px; 
+        left: 50%;
+        transform: translateX(-50%);
+        width: 120px; 
+        height: 100px;
+        border-radius: 50%;
+        border: 5px solid white; 
+        background-color: white; 
+    }
+</style>
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="form-container ">
+        <img src="https://cdn-icons-png.flaticon.com/512/6871/6871714.png" alt="Circular Image" class="circular-image" />
+        <div class="title-box">
     <h1 class="text-center mb-4">Formulario de Tipo Cambio</h1>
     <div class="row justify-content-center">
         <div class="col-md-6">
