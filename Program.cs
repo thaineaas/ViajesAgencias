@@ -2,9 +2,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Viajes.Data;
 using Microsoft.OpenApi.Models;
-using viajesagencias;
+using Microsoft.Extensions.ML;
+using MLModel1_ConsoleApp1;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddEndpointsApiExplorer();
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("PostgreSQLConnection") ?? throw new InvalidOperationException("Connection string 'PostgreSQLConnection' not found.");
@@ -16,6 +18,9 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddPredictionEnginePool<MLModel1.ModelInput, MLModel1.ModelOutput>()
+    .FromFile("MLModel1.mlnet");
 
 builder.Services.AddScoped<Viajes.Integration.CurrencyExchange.CurrencyExchangeIntegration>();
 builder.Services.AddScoped<Viajes.Service.ProductoService>();
@@ -70,6 +75,9 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseSession();
+app.MapPost("/predict",
+    async (PredictionEnginePool<MLModel1.ModelInput, MLModel1.ModelOutput> predictionEnginePool, MLModel1.ModelInput input) =>
+        await Task.FromResult(predictionEnginePool.Predict(input)));
 
 app.MapControllerRoute(
     name: "default",
