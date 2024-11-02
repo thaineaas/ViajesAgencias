@@ -8,7 +8,11 @@ html {
   }
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
@@ -19,4 +23,134 @@ html {
 
 body {
   margin-bottom: 60px;
+}
+
+.elemento {
+  opacity: 0; /* Elemento inicialmente oculto */
+  animation-name: aparecer;
+  animation-duration: 0.6s;
+  animation-delay: 0.2s; /* Retraso de 1 segundo para que aparezca después de desplazarse */
+  animation-fill-mode: forwards; /* Mantener el último estado de la animación al finalizar */
+}
+
+.elemento2 {
+  opacity: 0; /* Elemento inicialmente oculto */
+  animation-name: aparecer;
+  animation-duration: 1s;
+  animation-delay: 0.4s; /* Retraso de 1 segundo para que aparezca después de desplazarse */
+  animation-fill-mode: forwards; /* Mantener el último estado de la animación al finalizar */
+}
+@keyframes aparecer {
+  0% {
+    opacity: 0;
+    transform: translateY(50px); /* Desplazamiento inicial hacia abajo */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); /* Sin desplazamiento al final */
+  }
+}
+
+.overlay {
+  margin-left: 55%;
+  margin-top: 10%;
+  width: 40%;
+}
+.elemento3 {
+  opacity: 0;
+
+  transition: opacity 1s ease-in-out, transform 0.6s ease-in-out;
+
+  transform: translateY(50px);
+}
+
+@media screen and (max-width: 1600px) {
+  .navi {
+    padding-top: 3%;
+  }
+}
+@media screen and (max-width: 956px) {
+  .navi {
+    padding-top: 4%;
+  }
+}
+@media screen and (min-width: 1600px) {
+  .navi {
+    padding-top: 2%;
+  }
+}
+@media screen and (min-width: 589px) {
+  .srch {
+    margin-top: 2%;
+  }
+}
+@media screen and (max-width: 1256px) {
+  .navel2 {
+    padding-left: 9px;
+  }
+}
+@media screen and (min-width: 1256px) {
+  .car {
+    margin-top: -2.3px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
+@media screen and (max-width: 1256px) {
+  .car {
+    margin-top: 5px;
+  }
+}
+
+body::-webkit-scrollbar {
+  width: 10px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #000000;
+  border-radius: 8px;
+}
+
+.carA:hover {
+  background-color: #ffcf91;
+  border: solid 1px black;
+}
+.btnCat:hover {
+  background-color: #ffffff;
+
+  color: #000000;
+}
+
+.notification {
+  position: fixed;
+  top: 90px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ffffff;
+  color: #000000;
+  padding: 30px 40px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  border: 2px black solid;
+  opacity: 0;
+  animation: fade-in 0.5s ease-in-out forwards;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }

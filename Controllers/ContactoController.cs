@@ -9,18 +9,22 @@ using Viajes.Data;
 using Viajes.Models;
 using Viajes.ViewModel;
 using Viajes.Helper;
+using MLModel1_ConsoleApp1;
+using Microsoft.Extensions.ML;
 
-namespace app2game.Controllers
+namespace Viajes.Controllers
 {
     public class ContactoController : Controller
     {
         private readonly ILogger<ContactoController> _logger;
         private readonly ApplicationDbContext _context;
-
-        public ContactoController(ILogger<ContactoController> logger,ApplicationDbContext context)
+        private readonly PredictionEnginePool<MLModel1.ModelInput, MLModel1.ModelOutput> _predictionEnginePool;
+        public ContactoController(ILogger<ContactoController> logger,ApplicationDbContext context,PredictionEnginePool<MLModel1.ModelInput, MLModel1.ModelOutput> predictionEnginePool)
         {
             _logger = logger;
-             _context = context;
+            _context = context;
+            _predictionEnginePool = predictionEnginePool;
+
         }
 
         public IActionResult Index()
@@ -38,28 +42,40 @@ namespace app2game.Controllers
         [HttpPost]
         public async Task<IActionResult> Enviar(ContactoViewModel viewModel)
         {
-            _logger.LogDebug("Ingreso a Enviar Mensaje");
+            MLModel1.ModelInput sampleData = new MLModel1.ModelInput()
+            {
+                Sentiment_Text = viewModel.FormContacto.Message,
+            };
+            MLModel1.ModelOutput prediction = _predictionEnginePool.Predict(sampleData);
             
+            if(prediction.PredictedLabel ==1){
+                viewModel.FormContacto.Sentimiento = "Positivo";
+            }
+            else{
+                viewModel.FormContacto.Sentimiento = "Negativo";
+            }
             var contacto = new Contacto
             {
                 Name = viewModel.FormContacto.Name,
                 Email = viewModel.FormContacto.Email,
                 Message = viewModel.FormContacto.Message,
-                Contrasena = viewModel.FormContacto.Contrasena
+                Contrasena = viewModel.FormContacto.Contrasena,
+                Sentimiento = viewModel.FormContacto.Sentimiento
             };
+            Console.WriteLine($"El sentimiento es: {contacto.Sentimiento}");
 
             //var emailService = new SendMail();
             //await emailService.EnviarCorreoAsync(contacto.Email, "Asunto del correo", contacto.Message,contacto.Contrasena);
-            var __apiKey = Environment.GetEnvironmentVariable("SENDGRID_API_KEY");
+            //var __apiKey = Environment.GetEnvironmentVariable("SENDGRID_API_KEY");
 
-            var emailService2 = new SendMailSendGrid();
-            await emailService2.EnviarCorreoAsync(contacto.Email, "Asunto del correo", contacto.Message,contacto.Contrasena);
+            //var emailService2 = new SendMailSendGrid();
+            //await emailService2.EnviarCorreoAsync(contacto.Email, "Asunto del correo", contacto.Message,contacto.Contrasena);
 
 
             _context.Add(contacto);
             _context.SaveChanges();
 
-            ViewData["Message"] = "Se registro el contacto";            
+            TempData["Message"] = $"Se registro el contacto, con un mensaje {contacto.Sentimiento} ";            
             
             return RedirectToAction(nameof(Index));
         }

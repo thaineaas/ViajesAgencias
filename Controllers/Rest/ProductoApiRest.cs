@@ -49,6 +49,21 @@ namespace Viajes.Controllers.Rest
             return Ok(producto);
         }
 
-  
+        [HttpPost]
+        public async Task<ActionResult<Producto>> CreateProducto(Producto producto){
+            if (producto == null)
+            {
+                return BadRequest();
+            }
+            await _productoService.CreateOrUpdate(producto);
+            return Ok(producto);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteProducto(int? id)
+        {
+            await _productoService.Delete(id);
+            return Ok();
+        }
     }
 }
