@@ -2,7 +2,7 @@
 
 :root {
   --green: #ee1a1a;
-  --black: #000000;
+  --black: #06a9e9;
   --white: #6063ff;
   --light-color: #666;
   --box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
@@ -125,7 +125,7 @@ header .navbar a {
 
 header .navbar a.active,
 header .navbar a:hover {
-  color: #524141 !important;
+  color: #000000 !important;
   background: var(--white);
 }
 
@@ -145,7 +145,7 @@ header .icons a {
 
 header .icons i:hover,
 header .icons a:hover {
-  color: #000000;
+  color: #1d1b1b;
   background: var(--white);
   transform: rotate(360deg);
 }
