@@ -3,13 +3,29 @@
 @{
     ViewData["Title"] = "Crear cuenta";
 }
+<style>
+    body {
+        background-image: url('https://www.clarin.com/2020/03/11/zZ5-zT85_360x240__1.jpg');
+        background-size: cover;
+        background-position: center;
+    }
 
-<h1 style="display: flex; justify-content: center;">@ViewData["Title"]</h1>
+    .form-container {
+        background-color: #3f59cc;
+        padding: 20px; 
+        border-radius: 10px;
+        box-shadow: 0px 0px 15px rgba(18, 22, 104, 0.2);
+        width: 100%;
+        max-width: 400px;
+        position: relative; 
+    }
+</style>
+<br></br>
+<h1 class="text-center mb-6">@ViewData["Title"]</h1>
 
-<div class="row" style="display: flex; justify-content: center;">
-    <div class="col-md-4">
+<div class="container d-flex justify-content-center align-items-center">
+    <div class="form-container">
         <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <hr />
             <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
             <div class="form-floating mb-3">
                 <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />

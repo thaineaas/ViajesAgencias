@@ -4,25 +4,43 @@
 @{
     ViewData["Title"] = "Inicie sesión";
 }
+<style>
+    body {
+        background-image: url('https://nexovirtual.net/blog/wp-content/uploads/2018/02/marketing-turistico-agencias-viaje.jpg');
+        background-size: cover;
+        background-position: center;
+    }
 
-<h1 style="display: flex; justify-content: center;">@ViewData["Title"]</h1>
-<div class="row" style="display: flex; justify-content: center;">
-    <div class="col-md-4">
+    .form-container {
+        background-color: #1935ad;
+        padding: 10px; 
+        border-radius: 10px;
+        box-shadow: 0px 0px 15px rgba(18, 22, 104, 0.2);
+        width: 100%;
+        max-width: 450px;
+        position: relative; 
+    }
+</style>
+<br>
+<h1 class="text-center mb-12">@ViewData["Title"]</h1>
+<div class="container d-flex justify-content-center align-items-center">
+    <div class="form-container">
         <section>
             <form id="account" method="post">
-                <hr />
                 <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
-                <div class="form-floating mb-3">
+                <div class="form-floating mb-12">
                     <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
                     <label asp-for="Input.Email" class="form-label">Correo electronico</label>
                     <span asp-validation-for="Input.Email" class="text-danger"></span>
                 </div>
-                <div class="form-floating mb-3">
+                <br>
+                <div class="form-floating mb-10">
                     <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="Introduzca su contraseña" />
                     <label asp-for="Input.Password" class="form-label">Contraseña</label>
                     <span asp-validation-for="Input.Password" class="text-danger"></span>
                 </div>
-                <div class="checkbox mb-3">
+                <br>
+                <div class="checkbox mb-10">
                     <label asp-for="Input.RememberMe" class="form-label">
                         <input class="form-check-input" asp-for="Input.RememberMe" />
                         @Html.DisplayNameFor(m => m.Input.RememberMe)
@@ -31,6 +49,7 @@
                 <div>
                     <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Iniciar sesión</button>
                 </div>
+                <br>
                 <div>
                     <p>
                         <a id="forgot-password" asp-page="./ForgotPassword">¿Olvido su contraseña?</a>
