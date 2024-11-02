@@ -1,8 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap");
 
 :root {
-  --green: #eb0f0f;
-  --black: #0152e7;
+  --green: #ee1a1a;
+  --black: #06a9e9;
   --white: #6063ff;
   --light-color: #666;
   --box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
@@ -32,7 +32,7 @@ section {
 }
 
 section:nth-child(even) {
-  background: #1fbefd;
+  background: #71f1fa;
 }
 
 .sub-heading {
@@ -145,7 +145,7 @@ header .icons a {
 
 header .icons i:hover,
 header .icons a:hover {
-  color: #000000;
+  color: #1d1b1b;
   background: var(--white);
   transform: rotate(360deg);
 }
