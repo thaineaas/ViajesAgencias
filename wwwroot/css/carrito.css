@@ -1,0 +1,72 @@
+/* Estilos principales del contenedor de carrito */
+.carrito-contenedor {
+  background-color: #1e90ff; /* Azul oscuro */
+  color: #ffffff; /* Texto blanco */
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 600px;
+  margin: auto;
+  font-family: Arial, sans-serif;
+}
+
+/* Encabezado del carrito */
+.carrito-contenedor h1,
+.carrito-contenedor h2 {
+  color: #ffffff;
+  text-align: center;
+}
+
+/* Tabla de productos */
+.carrito-tabla {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.carrito-tabla th,
+.carrito-tabla td {
+  padding: 12px;
+  text-align: center;
+}
+
+.carrito-tabla th {
+  background-color: #4169e1; /* Azul más oscuro para los encabezados */
+  color: #ffffff;
+}
+
+.carrito-tabla td {
+  background-color: #87cefa; /* Azul claro para las celdas */
+}
+
+/* Botón de eliminar */
+.eliminar-boton {
+  background-color: #ff4500; /* Rojo para eliminar */
+  color: #ffffff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.eliminar-boton:hover {
+  background-color: #ff6347;
+}
+
+/* Botón de procesar venta */
+.procesar-venta-boton {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #32cd32; /* Verde para procesar */
+  color: #ffffff;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.procesar-venta-boton:hover {
+  background-color: #3cb371;
+}

@@ -6,6 +6,11 @@
     listItemsCarrito = @Model.elementosCarrito;
     Decimal montoTotal = @Model.montoTotal;
 }
+
+ <head>
+  <link rel="stylesheet" href="~/css/carrito.css" asp-append-version="true" />
+</head>
+
 <h1>@ViewData["Title"]</h1>
 <h1>Costo total S/. @Model.montoTotal</h1>
 <a class="btn btn-primary" asp-controller="Pago" 
