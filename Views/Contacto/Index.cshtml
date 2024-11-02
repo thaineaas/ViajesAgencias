@@ -21,38 +21,12 @@
                     <label asp-for="FormContacto.Message" class="control-label"></label>
                     <textarea asp-for="FormContacto.Message" class="form-control"></textarea>
                 </div>
-                <div class="form-group">
-                    <label asp-for="FormContacto.Contrasena" class="control-label"></label>
-                    <input asp-for="FormContacto.Contrasena" class="form-control" type="password" />
-                </div>                                  
+                <br>                                
                 <div class="form-group text-center">
-                    <button type="submit" class="btn btn-primary">Enviar</button>
+                    <button type="submit" class="w-100 btn btn-lg btn-primary">Enviar mensaje</button>
                 </div>
             </form>
             <h1>@ViewData["Message"]</h1>
         </div>
-        <div class="col-md-6">
-                <div class="table-responsive">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Email</th>
-                                <th>Mensaje</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @if(Model.ListContacto!=null){
-                                @foreach(var item in Model.ListContacto)
-                                {
-                                    <tr>
-                                        <td>@Html.DisplayFor(modelItem => item.Email)</td>
-                                        <td>@Html.DisplayFor(modelItem => item.Message)</td>
-                                    </tr>    
-                                }
-                            }
-                        </tbody>
-                    </table>
-                </div>
-            </div>
     </div>
 </div>
