@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using Viajes.Data;
 using System.Dynamic;
 using Viajes.Service;
+using Viajes.Models;
 
 namespace Viajes.Controllers
 {
@@ -25,7 +26,7 @@ namespace Viajes.Controllers
              _productoService = productoService;
         }
 
-        public async Task<IActionResult> Index()
+         public async Task<IActionResult> Index()
         {
             var categorias = from o in _context.DataCategoria select o;
             var catalogos = await _productoService.GetAll();  // Usa await aquí
@@ -33,6 +34,15 @@ namespace Viajes.Controllers
             model.itemCategorias = categorias;
             model.itemCatalogos = catalogos;
             return View(model);
+        }
+         public async Task<IActionResult> Details(long? id)
+        {
+            Producto objProduct = await _context.DataProducto.FindAsync(id);
+            if (objProduct == null)
+            {
+                return NotFound();
+            }
+            return View(objProduct);
         }
 
 
