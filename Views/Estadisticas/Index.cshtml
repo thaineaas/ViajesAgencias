@@ -1,0 +1,87 @@
+@{
+    var groupedItems = ViewData["GroupedItems"] as IEnumerable<dynamic>;
+
+    // Ordenar los elementos de forma que 'PENDIENTE' sea el primero
+    var sortedItems = groupedItems.OrderBy(x => x.Status == "PENDIENTE" ? 0 : 1).ToList();
+
+    // Obtener las etiquetas y los datos ordenados
+    var labels = sortedItems.Select(x => x.Status).ToList();
+    var data = sortedItems.Select(x => x.Count).ToList();
+}
+
+<div style="width: 600px; height: 400px; margin: 0 auto;">
+    <h1 style="margin-top:10px;">Estadisticas de Ventas</h1>
+
+    <canvas id="statusChart" width="800" height="600"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    // Preparar los datos para el gráfico
+    const labels = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(labels));
+    const data = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(data));
+
+    // Definir los colores dinámicamente dependiendo del estado
+    const backgroundColors = labels.map(status => {
+        if (status === "PROCESADO") {
+            return 'rgba(0, 255, 255, 0.5)'; // Celeste
+        } else if (status === "PENDIENTE") {
+            return 'rgba(255, 0, 0, 0.5)'; // Rojo
+        } else {
+            return 'rgba(54, 162, 235, 0.5)'; // Por defecto: Azul
+        }
+    });
+
+    // Definir las etiquetas para la leyenda
+    const legendLabels = labels.map(status => {
+        if (status === "PROCESADO") {
+            return 'PROCESADO'; // Etiqueta para el estado PROCESADO
+        } else if (status === "PENDIENTE") {
+            return 'PENDIENTE'; // Etiqueta para el estado PENDIENTE
+        } else {
+            return status; // Si hay otro estado, usar su nombre
+        }
+    });
+
+    const ctx = document.getElementById('statusChart').getContext('2d');
+    const statusChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Detalle de Ventas',
+                data: data,
+                backgroundColor: backgroundColors,  // Colores dinámicos
+                borderColor: 'rgba(54, 162, 235, 1)',  // Color del borde
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,  // Hace que el gráfico sea responsivo
+            maintainAspectRatio: false,  // Impide que mantenga el aspecto original, permitiendo que se ajuste al tamaño
+            plugins: {
+                legend: {
+                    labels: {
+                        generateLabels: function(chart) {
+                            // Generar etiquetas personalizadas para la leyenda
+                            return chart.data.labels.map((label, index) => {
+                                return {
+                                    text: legendLabels[index],  // Etiqueta personalizada
+                                    fillStyle: backgroundColors[index],  // Color correspondiente
+                                    strokeStyle: backgroundColors[index],  // Color del borde
+                                    lineWidth: 1
+                                };
+                            });
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true  // Comienza el eje Y desde cero
+                }
+            }
+        }
+    });
+</script>

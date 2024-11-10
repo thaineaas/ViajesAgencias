@@ -19,5 +19,6 @@ public class ApplicationDbContext : IdentityDbContext
     public DbSet<Viajes.Models.Pago> DataPago {get; set; }
     public DbSet<Viajes.Models.DetallePedido> DataDetallePedido {get; set; }
 
+    
 
 }
