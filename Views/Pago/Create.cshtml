@@ -2,62 +2,82 @@
 @{
     ViewData["Title"] = "Pago";
 }
-<h1>@ViewData["Title"]</h1>
+<style>
+    body {
+        background-image: url('https://travelxcapes.com/wp-content/uploads/2022/05/I4ZZOSFYHNFWTM76ZPCHBH6SZI-1024x683.jpg');
+        background-size: cover;
+        background-position: center;
+    }
+    .form-container {
+        background-color: #3f59cc;
+        padding: 15px; 
+        border-radius: 10px;
+        box-shadow: 0px 0px 15px rgba(18, 22, 104, 0.2);
+        width: 100%;
+        max-width: 250px;
+        position: relative; 
+    }
+  .label.asp-for{
+    font-size: 32px;
+  }
+</style>
 
-    <div class="container">
 
-        <div class="row">
-          <div class="col-sm-10 mt-5">
+<div class="container d-flex justify-content-center align-items-center">
+  <div class="form-container">
+    <h1 style="font-size: 22px;">@ViewData["Title"]</h1>
+    <div class="row justify-content-center">
+          <div class="col-md-13">
            <form asp-controller="Pago" asp-action="Pagar">
               <div class="form-group row">
                 <input type="hidden" asp-for="UserID"/>
-                <div class="col-sm-2">
-                  <label asp-for="NombreTarjeta" class="control-label"></label>
+                <div class="col-md-12">
+                  <label asp-for="NombreTarjeta" class="control-label" style="font-size: 16px;"></label>
                 </div>
-                <div class="col-sm-2">
+                <div class="col-md-12">
                   <input asp-for="NombreTarjeta" class="form-control" />
                 </div>
               </div>
               <div class="form-group row">
-                <div class="col-sm-2">
-                  <label asp-for="NumeroTarjeta" class="control-label"></label>
+                <div class="col-md-12">
+                  <label asp-for="NumeroTarjeta" class="control-label" style="font-size: 16px;"></label>
                 </div>
-                <div class="col-sm-2">
+                <div class="col-md-12">
                   <input asp-for="NumeroTarjeta" class="form-control" data-inputmask="'mask': '9999-9999-9999-9999'" />
                 </div>
-              </div>              
+              </div>       
               <div class="form-group row">
-                <div class="col-sm-2">
-                  <label asp-for="DueDateYYMM" class="control-label"></label>
+                <div class="col-md-12">
+                  <label asp-for="DueDateYYMM" class="control-label" style="font-size: 16px;"></label>
                 </div>
-                <div class="col-sm-2">
+                <div class="col-md-12">
                   <input asp-for="DueDateYYMM" class="form-control" data-inputmask="'mask': '99/99', 'placeholder': 'yy/mm'" />
                 </div>
               </div>
               <div class="form-group row">
-                <div class="col-sm-2">
-                  <label asp-for="Cvv" class="control-label"></label>
+                <div class="col-md-12">
+                  <label asp-for="Cvv" class="control-label" style="font-size: 16px;"></label>
                 </div>
-                <div class="col-sm-2">
+                <div class="col-md-12">
                   <input asp-for="Cvv" class="form-control" data-inputmask="'mask': '999', 'placeholder': '999'" />
                 </div>
               </div>
               <div class="form-group row">
-                <div class="col-sm-2">
-                  <label asp-for="MontoTotal" class="control-label"></label>
+                <div class="col-md-12">
+                  <label asp-for="MontoTotal" class="control-label" style="font-size: 16px;"></label>
                 </div>
-                <div class="col-sm-2">
+                <div class="col-md-12">
                   <input asp-for="MontoTotal" class="form-control" data-thousands="," data-decimal="." />
                 </div>
               </div>  
               <div class="form-group row">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-2">
-                  <button type="submit" class="btn btn-primary">Pagar</button> 
+                <div class="col-md-12">
+                  <button type="submit" class="w-100 btn btn-lg btn-primary">Pagar</button> 
                 </div>
               </div>
             </form>
             <h1>@ViewData["Message"]</h1>
           </div>
-        </div>
+      </div>
     </div>
+</div>
