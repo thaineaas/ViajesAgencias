@@ -7,52 +7,40 @@
     Decimal montoTotal = @Model.montoTotal;
 }
 
- <head>
-  <link rel="stylesheet" href="~/css/carrito.css" asp-append-version="true" />
+<head>
+    <link rel="stylesheet" href="~/css/carrito.css" asp-append-version="true" />
 </head>
 
 <h1>@ViewData["Title"]</h1>
-<h1>Costo total S/. @Model.montoTotal</h1>
-<a class="btn btn-primary" asp-controller="Pago" 
-        asp-action="Create" asp-route-monto="@montoTotal">Pagar</a>
+<h2>Costo total: S/. @Model.montoTotal</h2>
+
+<a class="btn btn-primary" asp-controller="Pago" asp-action="Create" asp-route-monto="@montoTotal">
+    Pagar
+</a>
+
 <table class="table">
     <thead>
         <tr>
-            <th>
-                Nombre
-            </th>
-            <th>
-               Cantidad
-            </th>
-            <th>
-                Precios
-            </th>
-            <th>
-                Sub Total
-            </th>
-            <th>
-                Acciones
-            </th>
+            <th>Nombre</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
+            <th>Sub Total</th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
- @foreach (var item in listItemsCarrito) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Producto.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cantidad)
-            </td>
-            <td>
-                S/. @Html.DisplayFor(modelItem => item.Precio)
-            </td>
-            <td>S/. @(item.Precio * item.Cantidad)</td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in listItemsCarrito)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Producto.Nombre)</td>
+                <td>@Html.DisplayFor(modelItem => item.Cantidad)</td>
+                <td>S/. @Html.DisplayFor(modelItem => item.Precio)</td>
+                <td>S/. @(item.Precio * item.Cantidad)</td>
+                <td>
+                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
